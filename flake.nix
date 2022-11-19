@@ -3,7 +3,7 @@
         {
           nixpkgs.url = "github:nixos/nixpkgs" ;
           flake-utils.url = "github:numtide/flake-utils" ;
-          argue.url = argue ;
+          argue.url = "github:nextmoose/argue" ;
         } ;
       outputs =
         { self , nixpkgs , flake-utils , argue } :

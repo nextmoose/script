@@ -10,10 +10,37 @@
           (
             pkgs.writeShellScriptBin
               "initiate"
-              ''
-                ${ pkgs.nix }/bin/nix develop --override-flake argue ${ builtins.concatStringsSep "" [ "$" "{" "1" "}" ] } --impure
-              ''
-          )
+	      (
+	        let
+		  master-dir = builtins.concatStringsSep "" [ "$" "{" "1" "}" ] ;
+		  work-dir = builtins.concatStringsSep "" [ "$" "{" "WORK_DIR" "}" ] ;
+		  in
+                    ''
+	              WORK_DIR=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
+		      function cleanup ( )
+		      {
+		        ${ pkgs.coreutils }/bin/echo ${ pkgs.coreutils }/bin/rm --recursive --force ${ work-dir }
+		      } &&
+		      trap cleanup EXIT &&
+		      ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/parent &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/parent init &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/parent config user.name "No One" &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/parent config user.email "no@one" &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/parent remote add origin ${ master-dir } &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/parent fetch origin $( ${ pkgs.git }/bin/git -C ${ master-dir } rev-parse HEAD ) &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/parent checkout $( ${ pkgs.git }/bin/git -C ${ master-dir } rev-parse HEAD ) &&
+		      ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/child &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/child init &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/child config user.name "No One" &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/child config user.email "no@one" &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/child remote add origin $( ${ pkgs.coreutils }/bin/pwd ) &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/child fetch origin $( ${ pkgs.git }/bin/git -C $( ${ pkgs.coreutils }/bin/pwd ) rev-parse HEAD ) &&
+		      ${ pkgs.git }/bin/git -C ${ work-dir }/child checkout $( ${ pkgs.git }/bin/git -C $( ${ pkgs.coreutils }/bin/pwd ) rev-parse HEAD ) &&
+	              ${ pkgs.gnused }/bin/sed -e "s#github:nextmoose/argue#${ work-dir }#" -e "w${ work-dir }/child/flake.nix" flake.nix &&
+                      ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/child/flake.nix
+                    ''
+              )
+	  )
           (
             pkgs.writeShellScriptBin
               "registry-add"
