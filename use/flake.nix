@@ -6,7 +6,7 @@
       nixos-structure-argue.url = "${WORK_DIR}/argue" ;
     } ;
   outputs =
-    { self , nixpkgs , flake-utils , nixos-structure-utils } :
+    { self , nixpkgs , flake-utils , nixos-structure-argue } :
       flake-utils.lib.eachDefaultSystem
       (
         system :
@@ -14,7 +14,7 @@
             devShell =
               let
                 pkgs = builtins.getAttr system nixpkgs.legacyPackages ;
-                argue = builtins.getAttr system nixos-structure-utils.lib ;
+                argue = builtins.getAttr system nixos-structure-argue.lib ;
 		inputx =
 		  argue
 		    [
