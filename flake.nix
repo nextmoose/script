@@ -42,7 +42,7 @@
                           to-string = ( self : "OK" ) ;
                           input = pkgs.mkShell ;
                         } ;
-                    in builtins.trace shell.test shell.object ;
+                    in builtins.trace shell.test ( pkgs.mkShell { } ) ;
                     # in pkgs.mkShell { shellHook = "${ pkgs.coreutils }/bin/echo hi ${ builtins.concatStringsSep " , " ( builtins.attrNames nixos-structure-argue ) }" ; } ;
               }
       ) ;
