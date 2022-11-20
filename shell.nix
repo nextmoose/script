@@ -47,7 +47,7 @@
                           ${ pkgs.git }/bin/git commit --all --allow-empty --message "TESTED"
                           ${ pkgs.coreutils }/bin/rm --recursive --force ${ work-dir }
                         else
-                          ${ pkgs.coreutils }/bin/echo There was a problem with ${ work-dir }
+                          ${ pkgs.coreutils }/bin/echo There was a problem with ${ work-dir } - ${ dollar "?" }
                         fi
                     } &&
                     trap cleanup EXIT &&
