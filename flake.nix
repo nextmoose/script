@@ -14,9 +14,9 @@
                 devShell =
                   let
                     pkgs = builtins.getAttr system nixpkgs.legacyPackages ;
-                    argue = builtins.getAttr system argue.lib ;
+                    arguex = builtins.getAttr system argue.lib ;
                     shell =
-                      argue
+                      arguex
 		        {
                           input-tests =
 			    [
