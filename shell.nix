@@ -43,9 +43,12 @@
                       ${ pkgs.coreutils }/bin/echo ${ pkgs.coreutils }/bin/rm --recursive --force ${ work-dir }
                     } &&
                     trap cleanup EXIT &&
-                    SHELL_COMMIT=${ dollar "SHELL_COMMIT:=$( ${ pkgs.git }/bin/git -C $( ${ pkgs.coreutils }/bin/pwd ) rev-parse HEAD )" } &&
-                    APPLY_COMMIT=${ dollar "ARGUE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ apply-dir } rev-parse HEAD )" } &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    APPLY_COMMIT=${ dollar "APPLY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ apply-dir } rev-parse HEAD )" } &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     ARGUE_COMMIT=${ dollar "ARGUE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ argue-dir } rev-parse HEAD )" } &&
+                    ${ pkgs.git }/bin/git commit --all --allow-empty --allow-empty-message --message ""
+                    SHELL_COMMIT=${ dollar "SHELL_COMMIT:=$( ${ pkgs.git }/bin/git -C $( ${ pkgs.coreutils }/bin/pwd ) rev-parse HEAD )" } &&
                     BIN_TIME=$( ${ pkgs.coreutils }/bin/date +Y%m%d%H%M%S ) &&
                     ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/apply &&
                     ${ pkgs.git }/bin/git -C ${ work-dir }/apply init &&
