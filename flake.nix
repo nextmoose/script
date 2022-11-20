@@ -20,10 +20,6 @@
                         {
                           input-tests =
                             [
-                              [ ( x : null ) true null "probably true" ]
-                              [ ( x : true ) true true "probably true" ]
-                              [ ( x : false ) true false "probably true" ]
-                              [ ( x : builtins.throw "" ) false null "probably true" ]
                             ] ;
                           output-tests =
                             [
