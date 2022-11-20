@@ -40,7 +40,7 @@
                     WORK_DIR=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
                     function cleanup ( )
                     {
-                      if ${ dollar "?" } -eq 0
+                      if [ ${ dollar "?" } -eq 0 ]
                         then
                           ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --message "TESTED" &&
@@ -85,7 +85,7 @@
                       
                     export SHELL_COMMIT=${ shell-commit } &&
                     export ARGUE_COMMIT=${ argue-commit } &&
-                    initiate ${ argue-dir }
+                    initiate ${ apply-commit } ${ argue-dir }
                     EOF
                     ) &&
                     ${ pkgs.coreutils }/bin/chmod 0500 bin/${ bin-time } &&
