@@ -14,9 +14,10 @@
                 devShell =
                   let
                     pkgs = builtins.getAttr system nixpkgs.legacyPackages ;
-                    arguex = builtins.getAttr system argue.lib ;
                     shell =
-                      arguex
+                      builtins.getAttr
+		        system
+			argue.lib
                         {
                           input-tests =
                             [
@@ -43,7 +44,6 @@
                           input = pkgs.mkShell ;
                         } ;
                     in shell.object ;
-                    # in pkgs.mkShell { shellHook = "${ pkgs.coreutils }/bin/echo hi ${ builtins.concatStringsSep " , " ( builtins.attrNames nixos-structure-argue ) }" ; } ;
               }
       ) ;
     }
