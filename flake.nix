@@ -21,11 +21,8 @@
                         {
                           input-tests =
                             [
-                              [ ( x : null ) true null "probably true 1" ]
-                              [ ( x : true ) true true "probably true 2" ]
-                              [ ( x : false ) true false "probably true 3" ]
-                              [ ( x : builtins.throw "" ) false null "probably true 4" ]
 			      [ ( x : x ) true { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ write-shell-script-bin.trace ] ; } "identity" ]
+                              [ ( x : builtins.throw "" ) false null "throws" ]
                             ] ;
                           output-tests =
                             [
