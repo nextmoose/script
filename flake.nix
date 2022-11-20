@@ -27,6 +27,7 @@
                             ] ;
                           output-tests =
                             [
+                              [ ( input : output : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } == output ) "correct" ]
                             ] ;
                           lambda =
                             (
@@ -37,7 +38,7 @@
                           to-string = ( self : "OK" ) ;
                           input = pkgs.mkShell ;
                         } ;
-                    in shell.object ;
+                    in builtins.trace "YES" shell.object ;
                     # in pkgs.mkShell { shellHook = "${ pkgs.coreutils }/bin/echo hi ${ builtins.concatStringsSep " , " ( builtins.attrNames nixos-structure-argue ) }" ; } ;
               }
       ) ;
