@@ -29,14 +29,12 @@
                             [
                               [ ( input : output : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } == output ) "correct" ]
                             ] ;
-                            
                           lambda = ( input : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } ) ;
-                          
                           label = "af00e578-b50a-42ba-b13c-808cb8de3af7" ;
                           to-string = ( self : "OK" ) ;
                           input = pkgs.mkShell ;
                         } ;
-                    in shell.output ;
+                    in shell.object ;
                     # in pkgs.mkShell { shellHook = "${ pkgs.coreutils }/bin/echo hi ${ builtins.concatStringsSep " , " ( builtins.attrNames nixos-structure-argue ) }" ; } ;
               }
       ) ;
