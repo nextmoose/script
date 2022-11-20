@@ -3,7 +3,7 @@
     {
       buildInputs =
         let
-          apply-commit = "dollar APPLY_COMMIT" ;
+          apply-commit = dollar "APPLY_COMMIT" ;
           argue-commit = dollar "ARGUE_COMMIT" ;
           apply-dir = dollar "1" ;
           argue-dir = dollar "2" ;
