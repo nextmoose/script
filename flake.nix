@@ -32,7 +32,7 @@
                           lambda =
                             (
                               input :
-                                pkgs.mkShell
+                                input.mkShell
                                   {
                                     shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ;
                                     buildInputs = [ ] ;
