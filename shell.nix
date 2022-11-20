@@ -89,7 +89,7 @@
                     EOF
                     ) &&
                     ${ pkgs.coreutils }/bin/chmod 0500 bin/${ bin-time } &&
-                    ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/shell/flake.nix
+                    ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/shell
                   ''
               )
             ] ;
