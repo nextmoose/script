@@ -30,9 +30,9 @@
                               [ ( input : output : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } == output ) "correct" ]
                             ] ;
                           lambda =
-			    (
-			      input :
-                                input
+                            (
+                              input :
+                                pkgs.mkShell
                                   {
                                     shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ;
                                     buildInputs = [ ] ;
