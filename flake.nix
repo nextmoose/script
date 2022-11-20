@@ -21,12 +21,12 @@
                         {
                           input-tests =
                             [
-			      [ ( x : x ) true { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ write-shell-script-bin.trace ] ; } "identity" ]
+			      [ ( x : x ) true { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ generate.trace ] ; } "identity" ]
                               [ ( x : builtins.throw "" ) false null "throws" ]
                             ] ;
                           output-tests =
                             [
-                              [ ( input : output : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ write-shell-script-bin.trace ] ; } == output ) "correct" ]
+                              [ ( input : output : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ generate.trace ] ; } == output ) "correct" ]
                             ] ;
                           lambda =
                             (
@@ -41,6 +41,7 @@
                           to-string = ( self : "OK" ) ;
                           input = pkgs.mkShell ;
                         } ;
+	            generate = write-shell-script-bin "generate" "${ pkgs.coreutils }/bin/echo HI" ;
 		    write-shell-script-bin =
 		      builtins.getAttr
 		        system
@@ -48,7 +49,7 @@
 			{
 			  input-tests = [ ] ;
 			  output-tests = [ ] ;
-			  lambda = ( input : input "generate" "${ pkgs.coreutils }/bin/echo HELLO" ) ;
+			  lambda = ( input : name : script : input name script ) ;
 			  label = "7156ded3-0c3a-4bd1-ac08-669445ac94ed" ;
 			  to-string = ( self : "YES" ) ;
 			  input = pkgs.writeShellScriptBin ;
