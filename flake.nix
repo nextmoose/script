@@ -32,7 +32,7 @@
                           lambda =
                             (
                               input :
-			        builtins.trace ( builtins.typeOf input )
+			        builtins.trace ( "YES" )
                                 ( input
 				  {
 				    shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ;
