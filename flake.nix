@@ -51,6 +51,7 @@
 				      ${ pkgs.coreutils }/bin/echo $@ &&
 				      exit 64
 				    ;;
+				ecase
 			      done &&
 			        SOURCE_DIRECTORY=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
 			        ${ pkgs.coreutils }/bin/cp ${ ./src/flake.nix } $SOURCE_DIRECTORY/flake.nix &&
