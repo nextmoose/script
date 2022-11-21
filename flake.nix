@@ -22,7 +22,9 @@
 			]
 			[
 			]
-			( input : pkgs.writeShellScriptBin "generate" "${ pkgs.coreutils }/bin/echo GENERATE ${ input }" )
+			(
+			  input : pkgs.stdenv.mkDerivation { buildPhase = "makewrapper ${ ./source/generate.sh } bin/generate" ; }
+			)
 			"cd2330a5-67d3-4919-800a-2ab8edb5d33e"
 			( self : "OK2" )
 			"IT" ;
