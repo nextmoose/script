@@ -6,6 +6,12 @@ do
 	--resource-directory)
 	    RESOURCE_DIRECTORY=${2} &&
 		shift 2 &&
+		break
+	    ;;
+	--private-file)
+	    PRIVATE_FILE=${2} &&
+		shift 2 &&
+		break
 	    ;;
 	*)
 	    echo UNEXPECTED &&
@@ -16,6 +22,7 @@ do
 done &&
     RESOURCE_DIRECTORY=${RESOURCE_DIRECTORY:=$( mktemp --directory )} &&
     SOURCE_DIRECTORY=$( mktemp --directory ) &&
+    
     cp ${GENERATE} ${SOURCE_DIRECTORY} &&
     chmod 0400 ${SOURCE_DIRECTORY}/flake.nix &&
     echo ${SOURCE_DIRECTORY)
