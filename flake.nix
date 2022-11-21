@@ -98,8 +98,8 @@
                         ( self : "OK" )
                         "Emory Merryman" ;
                     scripts =
-                      resource-directory : private : scripts :
                         {
+			  init = "${ pkgs.coreutils }/bin/echo HI" ;
                         } ;
                     in shell.trace ;
               }
