@@ -18,29 +18,24 @@
                       builtins.getAttr
 		        system
 			argue.lib
-                        {
-                          input-tests =
-                            [
-			      [ ( x : x ) true { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } "identity" ]
-                              [ ( x : builtins.throw "" ) false null "throws" ]
-                            ] ;
-                          output-tests =
-                            [
-                              [ ( input : output : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } == output ) "correct" ]
-                            ] ;
-                          lambda =
-                            (
-                              input :
-                                input
-                                  {
-                                    shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ;
-                                    buildInputs = [ ] ;
-                                  }
-                            ) ;
-                          label = "af00e578-b50a-42ba-b13c-808cb8de3af7" ;
-                          to-string = ( self : "OK" ) ;
-                          input = pkgs.mkShell ;
-                        } ;
+                        [
+			  [ ( x : x ) true { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } "identity" ]
+                          [ ( x : builtins.throw "" ) false null "throws" ]
+                        ]
+                        [
+                          [ ( input : output : input { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ; buildInputs = [ ] ; } == output ) "correct" ]
+                        ]
+                        (
+                          input :
+                            input
+                              {
+                                shellHook = "${ pkgs.coreutils }/bin/echo WELCOME!" ;
+                                buildInputs = [ ] ;
+                              }
+                        )
+                        "af00e578-b50a-42ba-b13c-808cb8de3af7"
+                        ( self : "OK" )
+                        pkgs.mkShell ;
                     in shell.trace ;
               }
       ) ;
