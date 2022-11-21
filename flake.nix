@@ -55,7 +55,9 @@
                               done &&
                                 SOURCE_DIRECTORY=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
                                 ${ pkgs.coreutils }/bin/cp ${ ./src/flake.nix } $SOURCE_DIRECTORY/flake.nix &&
-                                ${ pkgs.coreutils }/bin/chmod 0400 $SOURCE_DIRECTORY/flake.nix &&
+				${ pkgs.mktemp }/bin/mktemp --directory > $SOURCE_DIRECTORY/destination-directory.txt &&
+				${ pkgs.coreutils }/bin/echo $RESOURCE_DIRECTORY > $SOURCE_DIRECTORY/resource-directory.txt &&
+                                ${ pkgs.coreutils }/bin/chmod 0400 $SOURCE_DIRECTORY/flake.nix $SOURCE_DIRECTORY/destination-directory.txt $SOURCE_DIRECTORY/resource-directory.txt &&
                                 ${ pkgs.coreutils }/bin/echo $SOURCE_DIRECTORY
                             ''
                         )
@@ -98,8 +100,9 @@
                         ( self : "OK" )
                         "Emory Merryman" ;
                     scripts =
+		      resource-directory : private :
                         {
-			  init = "${ pkgs.coreutils }/bin/echo HI" ;
+			  init = "${ pkgs.coreutils }/bin/echo HI ... my resource directory is ${ resource-directory } and my private id is ${ private.id }" ;
                         } ;
                     in shell.trace ;
               }

@@ -13,8 +13,10 @@
                 devShell =
 		  pkgs.mkShell
 		    {
-		      buildInputs = builtins.import ./buildInputs.nix ;
-		      shellHook = builtins.readFile ./shellHook.txt ;
+		      shellHook =
+		        ''
+			  ${ pkgs.coreutils }/bin/echo HI
+			''
 		    } ;
               }
       ) ;
