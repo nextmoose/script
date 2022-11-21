@@ -30,6 +30,11 @@
                               while [ $# -gt 0 ]
                               do
                                 case $1 in
+				  --destination-directory)
+				    DESTINATION-DIRECTORY=$2 &&
+				      shift 2 &&
+				      break
+				    ;;
                                   --resource-directory)
                                     RESOURCE_DIRECTORY=$2 &&
                                       shift 2 &&
@@ -54,8 +59,8 @@
                                 esac
                               done &&
                                 SOURCE_DIRECTORY=$( ${ pkgs.mktemp }/bin/mktemp --directory ) &&
-                                ${ pkgs.coreutils }/bin/cp ${ ./src/flake.nix } $SOURCE_DIRECTORY/flake.nix &&
-				${ pkgs.mktemp }/bin/mktemp --directory > $SOURCE_DIRECTORY/destination-directory.txt &&
+                                ${ pkgs.coreutils }/bin/cp ${ ./src/source.nix } $SOURCE_DIRECTORY/flake.nix &&
+				${ pkgs.coreutils }/bin/echo $DESTINATION_DIRECTORY > $SOURCE_DIRECTORY/destination-directory.txt &&
 				${ pkgs.coreutils }/bin/echo $RESOURCE_DIRECTORY > $SOURCE_DIRECTORY/resource-directory.txt &&
                                 ${ pkgs.coreutils }/bin/chmod 0400 $SOURCE_DIRECTORY/flake.nix $SOURCE_DIRECTORY/destination-directory.txt $SOURCE_DIRECTORY/resource-directory.txt &&
                                 ${ pkgs.coreutils }/bin/echo $SOURCE_DIRECTORY
