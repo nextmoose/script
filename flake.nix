@@ -19,7 +19,7 @@
 		        system
 			argue.lib
                         [
-			  [ "eecebe2b-135e-4f53-a942-8812a66c7467" true ( pkgs.mkShell { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME eecebe2b-135e-4f53-a942-8812a66c7467" "identity" ]
+			  [ "eecebe2b-135e-4f53-a942-8812a66c7467" true ( pkgs.mkShell { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME eecebe2b-135e-4f53-a942-8812a66c7467" ; } ) "identity" ]
                         ]
                         [
                           [ ( input : output : pkgs.mkShell { shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ input }" } == output ) "correct" ]
