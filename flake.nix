@@ -19,24 +19,35 @@
 		        system
 			argue.lib
                         [
+			  [
+			    "eecebe2b-135e-4f53-a942-8812a66c7467"
+			    true
+			    (
+			      pkgs.mkShell
+			        {
+				  buildInputs = [ ] ;
+				  shellHook = "${ pkgs.coreutils }/bin/echo WELCOME eecebe2b-135e-4f53-a942-8812a66c7467" ;
+				}
+			    )
+			    "identity"
+			  ]
                         ]
                         [
                           [
-			    ( first-name : last-name : pkgs.mkShell { buildInputs = [ ] ; shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ first-name } ${ last-name }" ; } )
+			    ( name : pkgs.mkShell { buildInputs = [ ] ; shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ name }" ; } )
 			    "correct"
 			  ]
                         ]
                         (
-                          first-name : last-name :
+                          name :
                             pkgs.mkShell
                               {
-                                shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ first-name } ${ last-name}" ;
+                                shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ name }" ;
                               }
                         )
                         "af00e578-b50a-42ba-b13c-808cb8de3af7"
                         ( self : "OK" )
-			"Emory"
-			"Merryman" ;
+			"Emory" ;
                     in shell.trace ;
               }
       ) ;
