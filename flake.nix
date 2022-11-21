@@ -34,15 +34,15 @@
                         ]
                         [
                           [
-			    ( input : pkgs.mkShell { buildInputs = [ ] ; shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ input }" ; } )
+			    ( name : pkgs.mkShell { buildInputs = [ ] ; shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ name }" ; } )
 			    "correct"
 			  ]
                         ]
                         (
-                          input :
+                          name :
                             pkgs.mkShell
                               {
-                                shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ input }" ;
+                                shellHook = "${ pkgs.coreutils }/bin/echo WELCOME ${ name }" ;
                               }
                         )
                         "af00e578-b50a-42ba-b13c-808cb8de3af7"
