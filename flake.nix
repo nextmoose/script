@@ -33,7 +33,7 @@
                         )
                         "af00e578-b50a-42ba-b13c-808cb8de3af7"
                         ( self : "OK" )
-			"Emory Merryman"
+			"Emory Merryman" ;
                     in shell.trace ;
               }
       ) ;
