@@ -3,10 +3,10 @@
         {
           nixpkgs.url = "github:nixos/nixpkgs" ;
           flake-utils.url = "github:numtide/flake-utils" ;
-          argue.url = "github:nextmoose/argue" ;
+          utils.url = "github:nextmoose/utils" ;
         } ;
       outputs =
-        { self , nixpkgs , flake-utils , argue } :
+        { self , nixpkgs , flake-utils , utils } :
           flake-utils.lib.eachDefaultSystem
           (
             system :
@@ -14,10 +14,9 @@
                 devShell =
                   let
                     pkgs = builtins.getAttr system nixpkgs.legacyPackages ;
+		    utils = builtins.getAttr system utils.lib ;
                     generate =
-                      builtins.getAttr
-                        system
-                        argue.lib
+		      utils.argue
                         [
                         ]
                         [
@@ -70,9 +69,7 @@
                         ( self : "OK2" )
                         "IT" ;
                     shell =
-                      builtins.getAttr
-                        system
-                        argue.lib
+		      utils.argue
                         [
                           [
                             "eecebe2b-135e-4f53-a942-8812a66c7467"
