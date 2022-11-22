@@ -111,7 +111,7 @@
         ''
           export ARGUE_HOME=/home/emory/projects/h9QAx8XE &&
           export APPLY_HOME=/home/emory/projects/L5bpxC6n &&
-          export UTILS_HOME=/tmp/tmp.GyJXiywQvQ &&
+          export UTILS_HOME=/home/emory/projects/MGWfXwul &&
           ${ pkgs.coreutils}/bin/echo STRUCTURE FLAKE DEVELOPMENT ENVIRONMENT
         '' ;
     }
