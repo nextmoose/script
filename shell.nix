@@ -25,6 +25,8 @@
                   ''
                     ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }"
                   ''
@@ -33,7 +35,15 @@
                 pkgs.writeShellScriptBin
                   "edit"
                   ''
-                    ${ pkgs.emacs }/bin/emacs shell.nix flake.nix ${ dollar "APPLY_HOME" }/flake.nix ${ dollar "ARGUE_HOME" }/flake.nix ${ dollar "UTILS_HOME" }/flake.nix &
+                    ${ pkgs.emacs }/bin/emacs \
+                      shell.nix \
+                      flake.nix \
+                      ${ dollar "APPLY_HOME" }/flake.nix \
+                      ${ dollar "ARGUE_HOME" }/flake.nix \
+                      ${ dollar "TRY_HOME" }/flake.nix \
+                      ${ dollar "UTILS_HOME" }/flake.nix \
+                      ${ dollar "VISIT_HOME" }/flake.nix \
+                      &
                   ''
               )
               (
@@ -55,54 +65,62 @@
                     } &&
                     trap cleanup EXIT &&
                     ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
-                    APPLY_COMMIT=${ dollar "APPLY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ apply-dir } rev-parse HEAD )" } &&
+                    APPLY_COMMIT=${ dollar "APPLY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
-                    ARGUE_COMMIT=${ dollar "ARGUE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ argue-dir } rev-parse HEAD )" } &&
-                    ${ pkgs.git }/bin/git commit --all --allow-empty --allow-empty-message --message ""
-                    SHELL_COMMIT=${ dollar "SHELL_COMMIT:=$( ${ pkgs.git }/bin/git -C $( ${ pkgs.coreutils }/bin/pwd ) rev-parse HEAD )" } &&
-                    ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --allow-empty-message --message ""
-                    UTILS_COMMIT=${ dollar "UTILS_COMMIT:=$( ${ pkgs.git }/bin/git -C $( ${ pkgs.coreutils }/bin/pwd ) rev-parse HEAD )" } &&
-                    BIN_TIME=$( ${ pkgs.coreutils }/bin/date +Y%m%d%H%M%S ) &&
-                    ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/apply &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/apply init &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/apply config user.name "No One" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/apply config user.email "no@one" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/apply remote add origin ${ apply-dir } &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/apply fetch origin ${ apply-commit } &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/apply checkout ${ apply-commit } &&
-                    ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/argue &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/argue init &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/argue config user.name "No One" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/argue config user.email "no@one" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/argue remote add origin ${ argue-dir } &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/argue fetch origin ${ argue-commit } &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/argue checkout ${ argue-commit } &&
-                    ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/shell &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/shell init &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/shell config user.name "No One" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/shell config user.email "no@one" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/shell remote add origin $( ${ pkgs.coreutils }/bin/pwd ) &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/shell fetch origin ${ shell-commit } &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/shell checkout ${ shell-commit } &&
-                    ${ pkgs.gnused }/bin/sed -e "s#github:nextmoose/utils#${ work-dir }/utils#" -e "w${ work-dir }/shell/flake.nix" flake.nix &&
-                    ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/utils &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/utils init &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/utils config user.name "No One" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/utils config user.email "no@one" &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/utils remote add origin $( ${ pkgs.coreutils }/bin/pwd ) &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/utils fetch origin ${ utils-commit } &&
-                    ${ pkgs.git }/bin/git -C ${ work-dir }/utils checkout ${ utils-commit } &&
-                    ${ pkgs.gnused }/bin/sed -e "s#github:nextmoose/argue#${ work-dir }/argue#" -e "w${ work-dir }/utils/flake.nix" ${ dollar "UTILS_HOME" }/flake.nix &&
+                    ARGUE_COMMIT=${ dollar "ARGUE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } rev-parse HEAD )" } &&
+                    ${ pkgs.coreutils }/bin/echo AAAAAAAAAAAAAAAAAA &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    ${ pkgs.coreutils }/bin/echo AAAAAAAAAAAAAAAAAA &&
+                    SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } rev-parse HEAD )" } &&
+                    ${ pkgs.coreutils }/bin/echo AAAAAAAAAAAAAAAAAA &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    TRY_COMMIT=${ dollar "TRY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } rev-parse HEAD )" } &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    UTILS_COMMIT=${ dollar "UTILS_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } rev-parse HEAD )" } &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    VISIT_COMMIT=${ dollar "VISIT_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } rev-parse HEAD )" } &&
+                    function checkout ( )
+                    {
+                      NAME=${ dollar "1" } &&
+                      DIR=${ dollar "2" } &&
+                      COMMIT=${ dollar "3" } &&
+                      ${ pkgs.coreutils }/bin/mkdir ${ work-dir }/${ dollar "NAME" } &&
+                      ${ pkgs.git }/bin/git -C ${ work-dir }/${ dollar "NAME" } init &&
+                      ${ pkgs.git }/bin/git -C ${ work-dir }/${ dollar "NAME" } config user.name "No One" &&
+                      ${ pkgs.git }/bin/git -C ${ work-dir }/${ dollar "NAME" } config user.email "no@one" &&
+                      ${ pkgs.git }/bin/git -C ${ work-dir }/${ dollar "NAME" } remote add origin ${ dollar "DIR" } &&
+                      ${ pkgs.git }/bin/git -C ${ work-dir }/${ dollar "NAME" } fetch origin ${ dollar "COMMIT" } &&
+                      ${ pkgs.git }/bin/git -C ${ work-dir }/${ dollar "NAME" } checkout ${ dollar "COMMIT" } &&
+                      ${ pkgs.gnused }/bin/sed \
+                        -e "s#github:nextmoose/apply#${ work-dir }/apply#" \
+                        -e "s#github:nextmoose/argue#${ work-dir }/argue#" \
+                        -e "s#github:nextmoose/script#${ work-dir }/script#" \
+                        -e "s#github:nextmoose/shell${ work-dir }/shell#" \
+                        -e "s#github:nextmoose/try#${ work-dir }/try#" \
+                        -e "s#github:nextmoose/utils#${ work-dir }/utils#" \
+                        -e "s#github:nextmoose/visit#${ work-dir }/visit#" \
+                        -e "w${ work-dir }/${ dollar "NAME" }/flake.nix" \
+                        flake.nix
+                    } &&
+                    checkout argue ${ dollar "ARGUE_HOME" } ${ dollar "ARGUE_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout apply ${ dollar "APPLY_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout script ${ dollar "SCRIPT_HOME" } ${ dollar "SCRIPT_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout shell ${ dollar "SHELL_HOME" } ${ dollar "SHELL_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout utils ${ dollar "UTILS_HOME" } ${ dollar "UTILS_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout visit ${ dollar "VISIT_HOME" } ${ dollar "VISIT_COMMIT" } ${ dollar "WORK_DIR" } &&
                     ( ${ pkgs.coreutils }/bin/cat > bin/${ bin-time }.sh <<EOF
                     #!/bin/sh
                       
-                    export SHELL_COMMIT=${ shell-commit } &&
-                    export ARGUE_COMMIT=${ argue-commit } &&
-                    export UTILS_COMMIT=${ utils-commit } &&
-                    initiate ${ apply-commit } ${ argue-dir } ${ utils-commit }
+                    export ARGUE_COMMIT=${ dollar "ARGUE_COMMIT" } &&
+                    export APPLY_COMMIT=${ dollar "APPLY_COMMIT" } &&
+                    export SHELL_COMMIT=${ dollar "SHELL_COMMIT" } &&
+                    export TRY_COMMIT=${ dollar "TRY_COMMIT" } &&
+                    export UTILS_COMMIT=${ dollar "UTILS_COMMIT" } &&
+                    export VISIT_COMMIT=${ dollar "VISIT_COMMIT" } &&
+                    initiate
                     EOF
                     ) &&
-                    ${ pkgs.coreutils }/bin/chmod 0500 bin/${ bin-time } &&
+                    ${ pkgs.coreutils }/bin/chmod 0500 bin/${ bin-time }.sh &&
                     ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/shell
                   ''
               )
@@ -111,7 +129,11 @@
         ''
           export ARGUE_HOME=/home/emory/projects/h9QAx8XE &&
           export APPLY_HOME=/home/emory/projects/L5bpxC6n &&
+          export SHELL_HOME=/home/emory/projects/4GBaUR7F &&
+	  export SCRIPT_HOME=/home/emory/projects/71tspv3q &&
+          export TRY_HOME=/home/emory/projects/0gG3HgHu &&
           export UTILS_HOME=/home/emory/projects/MGWfXwul &&
-          ${ pkgs.coreutils}/bin/echo STRUCTURE FLAKE DEVELOPMENT ENVIRONMENT
+          export VISIT_HOME=/home/emory/projects/wHpYNJk8 &&
+          ${ pkgs.coreutils }/bin/echo STRUCTURE FLAKE DEVELOPMENT ENVIRONMENT
         '' ;
     }
