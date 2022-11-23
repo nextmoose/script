@@ -25,7 +25,9 @@
                   ''
                     ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }"
@@ -40,6 +42,8 @@
                       flake.nix \
                       ${ dollar "APPLY_HOME" }/flake.nix \
                       ${ dollar "ARGUE_HOME" }/flake.nix \
+                      ${ dollar "SCRIPT_HOME" }/flake.nix \
+                      ${ dollar "SHELL_HOME" }/flake.nix \
                       ${ dollar "TRY_HOME" }/flake.nix \
                       ${ dollar "UTILS_HOME" }/flake.nix \
                       ${ dollar "VISIT_HOME" }/flake.nix \
@@ -57,6 +61,11 @@
                         then
                           ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --message "TESTED" &&
+                          ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --message "TESTED" &&
+                          ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --message "TESTED" &&
+                          ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --message "TESTED" &&
+                          ${ pkgs.git }/bin/git -C ${ dollar "UTIL_HOME" } commit --all --allow-empty --message "TESTED" &&
+                          ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git commit --all --allow-empty --message "TESTED"
                           ${ pkgs.coreutils }/bin/rm --recursive --force ${ work-dir }
                         else
@@ -105,6 +114,7 @@
                     checkout apply ${ dollar "APPLY_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout script ${ dollar "SCRIPT_HOME" } ${ dollar "SCRIPT_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout shell ${ dollar "SHELL_HOME" } ${ dollar "SHELL_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout try ${ dollar "TRY_HOME" } ${ dollar "TRY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout utils ${ dollar "UTILS_HOME" } ${ dollar "UTILS_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout visit ${ dollar "VISIT_HOME" } ${ dollar "VISIT_COMMIT" } ${ dollar "WORK_DIR" } &&
                     ( ${ pkgs.coreutils }/bin/cat > bin/${ bin-time }.sh <<EOF
