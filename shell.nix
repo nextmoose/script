@@ -87,6 +87,7 @@
                     UTILS_COMMIT=${ dollar "UTILS_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     VISIT_COMMIT=${ dollar "VISIT_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } rev-parse HEAD )" } &&
+                    BIN_TIME=$( ${ pkgs.coreutils }/bin/date +%Y-%m-%d-%H-%S ) &&
                     function checkout ( )
                     {
                       NAME=${ dollar "1" } &&
@@ -139,7 +140,7 @@
           export ARGUE_HOME=/home/emory/projects/h9QAx8XE &&
           export APPLY_HOME=/home/emory/projects/L5bpxC6n &&
           export SHELL_HOME=/home/emory/projects/4GBaUR7F &&
-	  export SCRIPT_HOME=/home/emory/projects/71tspv3q &&
+          export SCRIPT_HOME=/home/emory/projects/71tspv3q &&
           export TRY_HOME=/home/emory/projects/0gG3HgHu &&
           export UTILS_HOME=/home/emory/projects/MGWfXwul &&
           export VISIT_HOME=/home/emory/projects/wHpYNJk8 &&
