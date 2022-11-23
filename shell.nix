@@ -109,7 +109,7 @@
                         -e "s#github:nextmoose/utils#${ work-dir }/utils#" \
                         -e "s#github:nextmoose/visit#${ work-dir }/visit#" \
                         -e "w${ work-dir }/${ dollar "NAME" }/flake.nix" \
-                        flake.nix
+                        ${ dollar "DIR" }/flake.nix
                     } &&
                     checkout argue ${ dollar "ARGUE_HOME" } ${ dollar "ARGUE_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout apply ${ dollar "APPLY_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
