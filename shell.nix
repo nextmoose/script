@@ -68,11 +68,10 @@
                     APPLY_COMMIT=${ dollar "APPLY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     ARGUE_COMMIT=${ dollar "ARGUE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } rev-parse HEAD )" } &&
-                    ${ pkgs.coreutils }/bin/echo AAAAAAAAAAAAAAAAAA &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
-                    ${ pkgs.coreutils }/bin/echo AAAAAAAAAAAAAAAAAA &&
                     SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } rev-parse HEAD )" } &&
-                    ${ pkgs.coreutils }/bin/echo AAAAAAAAAAAAAAAAAA &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    SHELL_COMMIT=${ dollar "SHELL_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     TRY_COMMIT=${ dollar "TRY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
