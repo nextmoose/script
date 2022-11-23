@@ -95,7 +95,7 @@
                         -e "s#github:nextmoose/apply#${ work-dir }/apply#" \
                         -e "s#github:nextmoose/argue#${ work-dir }/argue#" \
                         -e "s#github:nextmoose/script#${ work-dir }/script#" \
-                        -e "s#github:nextmoose/shell${ work-dir }/shell#" \
+                        -e "s#github:nextmoose/shell#${ work-dir }/shell#" \
                         -e "s#github:nextmoose/try#${ work-dir }/try#" \
                         -e "s#github:nextmoose/utils#${ work-dir }/utils#" \
                         -e "s#github:nextmoose/visit#${ work-dir }/visit#" \
