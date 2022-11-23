@@ -123,6 +123,7 @@
                       
                     export ARGUE_COMMIT=${ dollar "ARGUE_COMMIT" } &&
                     export APPLY_COMMIT=${ dollar "APPLY_COMMIT" } &&
+		    export SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT" } &&
                     export SHELL_COMMIT=${ dollar "SHELL_COMMIT" } &&
                     export TRY_COMMIT=${ dollar "TRY_COMMIT" } &&
                     export UTILS_COMMIT=${ dollar "UTILS_COMMIT" } &&
@@ -131,7 +132,7 @@
                     EOF
                     ) &&
                     ${ pkgs.coreutils }/bin/chmod 0500 bin/${ bin-time }.sh &&
-                    ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/shell
+                    ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/script
                   ''
               )
             ] ;
