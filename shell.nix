@@ -19,17 +19,17 @@
               pkgs.coreutils
               pkgs.emacs
               pkgs.inetutils
-	      (
-	        pkgs.writeShellScriptBin
-		  "cleanup"
-		  ''
-		    ${ pkgs.coreutils }/bin/date &&
-		    ${ pkgs.coreutils }/bin/df -h &&
-		    ${ pkgs.nix }/bin/nix nix-collect-garbage > /dev/null 2>&1 &&
-		    ${ pkgs.coreutils }/bin/df -h &&
-		    ${ pkgs.coreutils }/bin/date
-		  ''
-	      )
+              (
+                pkgs.writeShellScriptBin
+                  "cleanup"
+                  ''
+                    ${ pkgs.coreutils }/bin/date &&
+                    ${ pkgs.coreutils }/bin/df -h &&
+                    ${ pkgs.nix }/bin/nix nix-collect-garbage > /dev/null 2>&1 &&
+                    ${ pkgs.coreutils }/bin/df -h &&
+                    ${ pkgs.coreutils }/bin/date
+                  ''
+              )
               (
                 pkgs.writeShellScriptBin
                   "commit"
