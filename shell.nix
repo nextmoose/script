@@ -74,7 +74,7 @@
                           ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --message "TESTED" &&
-                          ${ pkgs.git }/bin/git -C ${ dollar "UTIL_HOME" } commit --all --allow-empty --message "TESTED" &&
+                          ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git commit --all --allow-empty --message "TESTED"
                           ${ pkgs.coreutils }/bin/rm --recursive --force ${ work-dir }
