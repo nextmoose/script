@@ -11,7 +11,7 @@
           (
             system :
               {
-                devShell = builtins.getAttr system shell.lib ) ( builtins.getAttr system nixpkgs.legacyPackages ) ;
+                devShell = builtins.getAttr system shell.lib ( builtins.getAttr system nixpkgs.legacyPackages ) ;
               }
       ) ;
     }
