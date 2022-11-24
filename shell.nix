@@ -78,6 +78,21 @@
                           ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git commit --all --allow-empty --message "TESTED"
                           ${ pkgs.coreutils }/bin/rm --recursive --force ${ work-dir }
+                          ( ${ pkgs.coreutils }/bin/cat > bin/${ bin-time }.sh <<EOF
+                            #!/bin/sh
+                      
+                            export ARGUE_COMMIT=${ dollar "ARGUE_COMMIT" } &&
+                            export APPLY_COMMIT=${ dollar "APPLY_COMMIT" } &&
+                            export SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT" } &&
+                            export SHELL_COMMIT=${ dollar "SHELL_COMMIT" } &&
+                            export TRY_COMMIT=${ dollar "TRY_COMMIT" } &&
+                            export UTILS_COMMIT=${ dollar "UTILS_COMMIT" } &&
+                            export VISIT_COMMIT=${ dollar "VISIT_COMMIT" } &&
+                            
+                            initiate
+                    EOF
+                          ) &&
+                          ${ pkgs.coreutils }/bin/chmod 0500 bin/${ bin-time }.sh
                         else
                           ${ pkgs.coreutils }/bin/echo There was a problem with ${ work-dir } - ${ dollar "?" }
                         fi
@@ -128,20 +143,6 @@
                     checkout try ${ dollar "TRY_HOME" } ${ dollar "TRY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout utils ${ dollar "UTILS_HOME" } ${ dollar "UTILS_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout visit ${ dollar "VISIT_HOME" } ${ dollar "VISIT_COMMIT" } ${ dollar "WORK_DIR" } &&
-                    ( ${ pkgs.coreutils }/bin/cat > bin/${ bin-time }.sh <<EOF
-                    #!/bin/sh
-                      
-                    export ARGUE_COMMIT=${ dollar "ARGUE_COMMIT" } &&
-                    export APPLY_COMMIT=${ dollar "APPLY_COMMIT" } &&
-                    export SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT" } &&
-                    export SHELL_COMMIT=${ dollar "SHELL_COMMIT" } &&
-                    export TRY_COMMIT=${ dollar "TRY_COMMIT" } &&
-                    export UTILS_COMMIT=${ dollar "UTILS_COMMIT" } &&
-                    export VISIT_COMMIT=${ dollar "VISIT_COMMIT" } &&
-                    initiate
-                    EOF
-                    ) &&
-                    ${ pkgs.coreutils }/bin/chmod 0500 bin/${ bin-time }.sh &&
                     ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/script
                   ''
               )
