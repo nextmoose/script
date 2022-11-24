@@ -11,7 +11,17 @@
           (
             system :
               {
-                devShell = builtins.getAttr system shell.lib nixpkgs ;
+                devShell =
+		  builtins.getAttr
+		    system
+		    shell.lib
+		    nixpkgs
+		    (
+		      structure :
+		        {
+			  hook = "${ structure.pkgs.coreutils }/bin/echo HELLO" ;
+			}
+		    ) ;
               }
       ) ;
     }
