@@ -3,10 +3,9 @@
         {
           nixpkgs.url = "github:nixos/nixpkgs" ;
           flake-utils.url = "github:numtide/flake-utils" ;
-          utils.url = "github:nextmoose/utils" ;
         } ;
       outputs =
-        { self , nixpkgs , flake-utils , utils } :
+        { self , nixpkgs , flake-utils } :
           flake-utils.lib.eachDefaultSystem
           (
             system :
