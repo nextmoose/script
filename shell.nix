@@ -25,7 +25,7 @@
                   ''
                     ${ pkgs.coreutils }/bin/date &&
                     ${ pkgs.coreutils }/bin/df -h &&
-                    ${ pkgs.nix }/bin/nix nix-collect-garbage > /dev/null 2>&1 &&
+                    ${ pkgs.nix }/bin/nix-collect-garbage > /dev/null 2>&1 &&
                     ${ pkgs.coreutils }/bin/df -h &&
                     ${ pkgs.coreutils }/bin/date
                   ''
@@ -143,7 +143,7 @@
                     checkout try ${ dollar "TRY_HOME" } ${ dollar "TRY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout utils ${ dollar "UTILS_HOME" } ${ dollar "UTILS_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout visit ${ dollar "VISIT_HOME" } ${ dollar "VISIT_COMMIT" } ${ dollar "WORK_DIR" } &&
-                    ${ pkgs.nix }/bin/nix develop --impure ${ work-dir }/script
+                    ${ pkgs.nix }/bin/nix develop --impure --show-trace ${ work-dir }/script
                   ''
               )
             ] ;
