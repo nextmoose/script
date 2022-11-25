@@ -17,10 +17,7 @@
 		    shell.lib
 		    nixpkgs
 		    (
-		      structure :
-		        {
-			  hook = "${ structure.pkgs.coreutils }/bin/echo HELLO" ;
-			}
+		      structure :  "${ structure.pkgs.coreutils }/bin/echo HELLO" ;
 		    ) ;
               }
       ) ;
