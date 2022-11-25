@@ -17,7 +17,7 @@
 		    shell.lib
 		    nixpkgs
 		    (
-		      structure :  "${ structure.pkgs.coreutils }/bin/echo HELLO"
+		      structure :  "${ structure.pkgs.coreutils }/bin/echo HELLO THERE"
 		    ) ;
               }
       ) ;
