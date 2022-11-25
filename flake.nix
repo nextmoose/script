@@ -1,7 +1,7 @@
   {
       inputs =
         {
-          anixpkgs.url = "github:nixos/nixpkgs" ;
+          nixpkgs.url = "github:nixos/nixpkgs" ;
           flake-utils.url = "github:numtide/flake-utils" ;
 	  shell.url = "github:nextmoose/shell" ;
         } ;
