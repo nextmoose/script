@@ -21,8 +21,8 @@
 		        {
 			  welcome = "${ structure.pkgs.coreutils }/bin/echo Welcome" ;
 			}
-		    ) ;
-		    ( scripts : scripts.welcome )
+		    )
+		    ( scripts : scripts.welcome ) ;
               }
       ) ;
     }
