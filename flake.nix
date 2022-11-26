@@ -19,7 +19,7 @@
 		    (
 		      structure :
 		        {
-			  welcome = "${ structure.pkgs.coreutils }/bin/echo Welcome" ;
+			  welcome = "${ structure.pkgs.coreutils }/bin/echo Welcome!!!" ;
 			}
 		    )
 		    ( scripts : scripts.welcome ) ;
