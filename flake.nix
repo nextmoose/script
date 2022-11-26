@@ -17,8 +17,12 @@
 		    shell.lib
 		    nixpkgs
 		    (
-		      structure : [ "${ structure.pkgs.coreutils }/bin/echo HELLO THERE" ]
+		      structure :
+		        {
+			  welcome = "${ structure.pkgs.coreutils }/bin/echo Welcome"
+			}
 		    ) ;
+		    ( scripts : scripts.welcome )
               }
       ) ;
     }
