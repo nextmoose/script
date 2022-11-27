@@ -20,8 +20,8 @@
 		      structure :
 		        {
 			  welcome = "${ structure.pkgs.coreutils }/bin/echo Welcome!!!" ;
-			  program2 = "${ structure.pkgs.coreutils }/bin/echo HELLO ${ structure.token }" ;
-			  program3 = "${ structure.pkgs.coreutils }/bin/echo 31bca02094eb78126a517b206a88c73cfa9ec6f704c7030d18212cace820f025f00bf0ea68dbf3f3a5436ca63b53bf7bf80ad8d5de7d8359d0b7fed9dbc3ab99" ;
+			  program2 = "${ structure.pkgs.coreutils }/bin/echo token=${ structure.token }" ;
+			  program3 = "${ structure.pkgs.coreutils }/bin/echo constant=31bca02094eb78126a517b206a88c73cfa9ec6f704c7030d18212cace820f025f00bf0ea68dbf3f3a5436ca63b53bf7bf80ad8d5de7d8359d0b7fed9dbc3ab99" ;
 			}
 		    )
 		    ( scripts : scripts.program2 ) ;
