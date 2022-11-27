@@ -30,6 +30,13 @@
                     ${ pkgs.coreutils }/bin/date
                   ''
               )
+	      (
+	        pkgs.writeShellScriptBin
+		  "cleanup-tmp"
+		  ''
+		    ${ pkgs.find }/bin/find $( ${ pkgs.mktemp }/bin/mktemp --directory )/.. -maxdepth 3 -mmin +60 -exec ${ pkgs.coreutils }/bin/shred --force --remove {} \;  &&
+		  ''
+	      )
               (
                 pkgs.writeShellScriptBin
                   "commit"
