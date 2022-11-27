@@ -23,7 +23,7 @@
 			  program2 = "${ structure.pkgs.coreutils }/bin/echo HELLO ${ structure.resource-directory }" ;
 			}
 		    )
-		    ( scripts : scripts.welcome ) ;
+		    ( scripts : scripts.program2 ) ;
               }
       ) ;
     }
