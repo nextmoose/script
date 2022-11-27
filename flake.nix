@@ -20,7 +20,7 @@
 		      structure :
 		        {
 			  welcome = "${ structure.pkgs.coreutils }/bin/echo Welcome!!!" ;
-			  program2 = "${ structure.pkgs.coreutils }/bin/echo HELLO ${ structure.resource-directory }" ;
+			  program2 = "${ structure.pkgs.coreutils }/bin/echo HELLO ${ structure.token }" ;
 			}
 		    )
 		    ( scripts : scripts.program2 ) ;
