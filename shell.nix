@@ -46,6 +46,7 @@
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "STRIP_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }"
@@ -62,6 +63,7 @@
                       ${ dollar "ARGUE_HOME" }/flake.nix \
                       ${ dollar "SCRIPT_HOME" }/flake.nix \
                       ${ dollar "SHELL_HOME" }/flake.nix \
+		      ${ dollar "STRIP_HOME" }/flake.nix \
                       ${ dollar "TRY_HOME" }/flake.nix \
                       ${ dollar "UTILS_HOME" }/flake.nix \
                       ${ dollar "VISIT_HOME" }/flake.nix \
@@ -115,7 +117,9 @@
                     ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     SHELL_COMMIT=${ dollar "SHELL_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
-                    TRY_COMMIT=${ dollar "TRY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } rev-parse HEAD )" } &&
+                    TRY_COMMIT=${ dollar "TRY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } rev-parse HEAD )" } &&		    
+                    ${ pkgs.git }/bin/git -C ${ dollar "STRIP_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    STRIP_COMMIT=${ dollar "STRIP_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "STRIP_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     UTILS_COMMIT=${ dollar "UTILS_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "UTILS_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "VISIT_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
@@ -138,6 +142,7 @@
                         -e "s#github:nextmoose/argue#${ work-dir }/argue#" \
                         -e "s#github:nextmoose/script#${ work-dir }/script#" \
                         -e "s#github:nextmoose/shell#${ work-dir }/shell#" \
+                        -e "s#github:nextmoose/strip#${ work-dir }/strip#" \
                         -e "s#github:nextmoose/try#${ work-dir }/try#" \
                         -e "s#github:nextmoose/utils#${ work-dir }/utils#" \
                         -e "s#github:nextmoose/visit#${ work-dir }/visit#" \
@@ -148,6 +153,7 @@
                     checkout apply ${ dollar "APPLY_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout script ${ dollar "SCRIPT_HOME" } ${ dollar "SCRIPT_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout shell ${ dollar "SHELL_HOME" } ${ dollar "SHELL_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout shell ${ dollar "STRIP_HOME" } ${ dollar "STRIP_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout try ${ dollar "TRY_HOME" } ${ dollar "TRY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout utils ${ dollar "UTILS_HOME" } ${ dollar "UTILS_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout visit ${ dollar "VISIT_HOME" } ${ dollar "VISIT_COMMIT" } ${ dollar "WORK_DIR" } &&
@@ -161,6 +167,7 @@
           export APPLY_HOME=/home/emory/projects/L5bpxC6n &&
           export SHELL_HOME=/home/emory/projects/4GBaUR7F &&
           export SCRIPT_HOME=/home/emory/projects/71tspv3q &&
+	  export STRIP_HOME=/home/emory/projects/0TFnR2fJ &&
           export TRY_HOME=/home/emory/projects/0gG3HgHu &&
           export UTILS_HOME=/home/emory/projects/MGWfXwul &&
           export VISIT_HOME=/home/emory/projects/wHpYNJk8 &&
