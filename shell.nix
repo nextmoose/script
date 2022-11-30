@@ -160,6 +160,19 @@
                     ${ pkgs.nix }/bin/nix develop --impure --show-trace ${ work-dir }/script
                   ''
               )
+	      (
+	        pkgs.writeShellScriptBin
+		  "push"
+		  ''
+		    push ( )
+		    {
+		      cd ${ builtins.concatStringsSep "" [ "$" "{" "1" "}" ] } &&
+		      ${ pkgs.git }/bin/git commit --all --allow-empty --allow-empty-message --message "" &&
+		      ${ pkgs.git }/bin/git push origin HEAD &&
+		      ${ pkgs.git }/bin/git push origin main
+		    }
+		  ''
+	      )
             ] ;
       shellHook =
         ''
