@@ -170,7 +170,15 @@
 		      ${ pkgs.git }/bin/git commit --all --allow-empty --allow-empty-message --message "" &&
 		      ${ pkgs.git }/bin/git push origin HEAD &&
 		      ${ pkgs.git }/bin/git push origin main
-		    }
+		    } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "APPLY_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "ARGUE_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "SCRIPT_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "SHELL_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "STRIP_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "TRY_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "UTILS_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "VISIT_HOME" "}" ] }
 		  ''
 	      )
             ] ;
