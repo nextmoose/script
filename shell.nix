@@ -153,7 +153,7 @@
                     checkout apply ${ dollar "APPLY_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout script ${ dollar "SCRIPT_HOME" } ${ dollar "SCRIPT_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout shell ${ dollar "SHELL_HOME" } ${ dollar "SHELL_COMMIT" } ${ dollar "WORK_DIR" } &&
-                    checkout shell ${ dollar "STRIP_HOME" } ${ dollar "STRIP_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout strip ${ dollar "STRIP_HOME" } ${ dollar "STRIP_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout try ${ dollar "TRY_HOME" } ${ dollar "TRY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout utils ${ dollar "UTILS_HOME" } ${ dollar "UTILS_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout visit ${ dollar "VISIT_HOME" } ${ dollar "VISIT_COMMIT" } ${ dollar "WORK_DIR" } &&
