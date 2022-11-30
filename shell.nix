@@ -19,6 +19,7 @@
               pkgs.coreutils
               pkgs.emacs
               pkgs.inetutils
+	      pkgs.moreutils
               (
                 pkgs.writeShellScriptBin
                   "cleanup"
@@ -34,7 +35,7 @@
 	        pkgs.writeShellScriptBin
 		  "cleanup-tmp"
 		  ''
-		    ${ pkgs.find }/bin/find $( ${ pkgs.mktemp }/bin/mktemp --directory )/.. -maxdepth 3 -mmin +60 -exec ${ pkgs.coreutils }/bin/shred --force --remove {} \;  &&
+		    ${ pkgs.findutils }/bin/find $( ${ pkgs.mktemp }/bin/mktemp --directory )/.. -maxdepth 3 -mmin +60 -exec ${ pkgs.coreutils }/bin/shred --force --remove {} \;
 		  ''
 	      )
               (
