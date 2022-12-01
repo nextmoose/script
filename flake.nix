@@ -25,7 +25,7 @@
 			}
 		    )
 		    ( scripts : scripts.program2 )
-		    /usr/bin/at ;
+		    "/usr/bin/at" ;
               }
       ) ;
     }
