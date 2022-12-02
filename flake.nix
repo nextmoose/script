@@ -24,7 +24,7 @@
 			  program4 = "${ structure.pkgs.coreutils }/bin/echo ${ structure.scripts.program3 }" ;	  
 			}
 		    )
-		    ( scripts : scripts.program2 )
+		    ( scripts : scripts.program4 )
 		    "/usr/bin/at" ;
               }
       ) ;
