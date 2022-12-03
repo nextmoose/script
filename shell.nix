@@ -146,6 +146,7 @@
                       ${ pkgs.gnused }/bin/sed \
                         -e "s#github:nextmoose/apply#${ work-dir }/apply#" \
                         -e "s#github:nextmoose/argue#${ work-dir }/argue#" \
+                        -e "s#github:nextmoose/bash-variable#${ work-dir }/bash-variable#" \
                         -e "s#github:nextmoose/script#${ work-dir }/script#" \
                         -e "s#github:nextmoose/shell#${ work-dir }/shell#" \
                         -e "s#github:nextmoose/strip#${ work-dir }/strip#" \
