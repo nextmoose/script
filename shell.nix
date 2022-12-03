@@ -117,7 +117,7 @@
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     ARGUE_COMMIT=${ dollar "ARGUE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "BASH_VARIABLE_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
-                    BASH_VARIABLE_COMMIT=${ dollar "BASH_VARIABLE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } rev-parse HEAD )" } &&
+                    BASH_VARIABLE_COMMIT=${ dollar "BASH_VARIABLE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "BASH_VARIABLE_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
