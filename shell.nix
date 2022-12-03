@@ -157,7 +157,7 @@
                     } &&
                     checkout argue ${ dollar "ARGUE_HOME" } ${ dollar "ARGUE_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout apply ${ dollar "APPLY_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
-                    checkout bash-variable-home ${ dollar "BASH_VARIABLE_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout bash-variable-home ${ dollar "BASH_VARIABLE_HOME" } ${ dollar "BASH_VARIABLE_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout script ${ dollar "SCRIPT_HOME" } ${ dollar "SCRIPT_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout shell ${ dollar "SHELL_HOME" } ${ dollar "SHELL_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout strip ${ dollar "STRIP_HOME" } ${ dollar "STRIP_COMMIT" } ${ dollar "WORK_DIR" } &&
