@@ -44,6 +44,7 @@
                   ''
                     ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "BASH_VARIABLE_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
                     ${ pkgs.git }/bin/git -C ${ dollar "STRIP_HOME" } commit --all --allow-empty --allow-empty-message --message "${ dollar "@" }" &&
@@ -61,6 +62,7 @@
                       flake.nix \
                       ${ dollar "APPLY_HOME" }/flake.nix \
                       ${ dollar "ARGUE_HOME" }/flake.nix \
+                      ${ dollar "BASH_VARIABLE_HOME" }/flake.nix \
                       ${ dollar "SCRIPT_HOME" }/flake.nix \
                       ${ dollar "SHELL_HOME" }/flake.nix \
 		      ${ dollar "STRIP_HOME" }/flake.nix \
@@ -81,6 +83,7 @@
                         then
                           ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --message "TESTED" &&
+                          ${ pkgs.git }/bin/git -C ${ dollar "BASH_VARIABLE_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --message "TESTED" &&
                           ${ pkgs.git }/bin/git -C ${ dollar "TRY_HOME" } commit --all --allow-empty --message "TESTED" &&
@@ -93,6 +96,7 @@
                       
                             export ARGUE_COMMIT=${ dollar "ARGUE_COMMIT" } &&
                             export APPLY_COMMIT=${ dollar "APPLY_COMMIT" } &&
+                            export BASH_VARIABLE_COMMIT=${ dollar "APPLY_COMMIT" } &&
                             export SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT" } &&
                             export SHELL_COMMIT=${ dollar "SHELL_COMMIT" } &&
                             export TRY_COMMIT=${ dollar "TRY_COMMIT" } &&
@@ -112,6 +116,8 @@
                     APPLY_COMMIT=${ dollar "APPLY_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "APPLY_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     ARGUE_COMMIT=${ dollar "ARGUE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "ARGUE_HOME" } rev-parse HEAD )" } &&
+                    ${ pkgs.git }/bin/git -C ${ dollar "BASH_VARIABLE_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
+                    BASH_VARIABLE_COMMIT=${ dollar "BASH_VARIABLE_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
                     SCRIPT_COMMIT=${ dollar "SCRIPT_COMMIT:=$( ${ pkgs.git }/bin/git -C ${ dollar "SCRIPT_HOME" } rev-parse HEAD )" } &&
                     ${ pkgs.git }/bin/git -C ${ dollar "SHELL_HOME" } commit --all --allow-empty --allow-empty-message --message "" &&
@@ -151,6 +157,7 @@
                     } &&
                     checkout argue ${ dollar "ARGUE_HOME" } ${ dollar "ARGUE_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout apply ${ dollar "APPLY_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
+                    checkout apply ${ dollar "BASH_VARIABLE_HOME" } ${ dollar "APPLY_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout script ${ dollar "SCRIPT_HOME" } ${ dollar "SCRIPT_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout shell ${ dollar "SHELL_HOME" } ${ dollar "SHELL_COMMIT" } ${ dollar "WORK_DIR" } &&
                     checkout strip ${ dollar "STRIP_HOME" } ${ dollar "STRIP_COMMIT" } ${ dollar "WORK_DIR" } &&
@@ -173,6 +180,7 @@
 		    } &&
 		    push ${ builtins.concatStringsSep "" [ "$" "{" "APPLY_HOME" "}" ] } &&
 		    push ${ builtins.concatStringsSep "" [ "$" "{" "ARGUE_HOME" "}" ] } &&
+		    push ${ builtins.concatStringsSep "" [ "$" "{" "BASH_VARIABLE_HOME" "}" ] } &&
 		    push ${ builtins.concatStringsSep "" [ "$" "{" "SCRIPT_HOME" "}" ] } &&
 		    push ${ builtins.concatStringsSep "" [ "$" "{" "SHELL_HOME" "}" ] } &&
 		    push ${ builtins.concatStringsSep "" [ "$" "{" "STRIP_HOME" "}" ] } &&
@@ -186,6 +194,7 @@
         ''
           export ARGUE_HOME=/home/emory/projects/h9QAx8XE &&
           export APPLY_HOME=/home/emory/projects/L5bpxC6n &&
+	  export BASH_VARIABLE_HOME=/home/emory/projects/5juNXfpb &&
           export SHELL_HOME=/home/emory/projects/4GBaUR7F &&
           export SCRIPT_HOME=/home/emory/projects/71tspv3q &&
 	  export STRIP_HOME=/home/emory/projects/0TFnR2fJ &&
